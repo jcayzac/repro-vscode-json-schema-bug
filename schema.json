@@ -1,0 +1,314 @@
+{
+  "$ref": "#/definitions/articles",
+  "definitions": {
+    "articles": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Title.",
+              "markdownDescription": "Title."
+            },
+            "description": {
+              "type": "string",
+              "description": "SEO description. Also used as a subheading if `subheading` is not present.",
+              "markdownDescription": "SEO description. Also used as a subheading if `subheading` is not present."
+            },
+            "subheading": {
+              "type": "string",
+              "description": "Subheading.",
+              "markdownDescription": "Subheading."
+            },
+            "draft": {
+              "type": "boolean",
+              "default": false,
+              "description": "Is it a draft?",
+              "markdownDescription": "Is it a draft?"
+            }
+          },
+          "required": [
+            "title",
+            "description"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "hero": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "image": {
+                      "type": "string"
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alt text for the image.",
+                      "markdownDescription": "Alt text for the image."
+                    },
+                    "caption": {
+                      "type": "string",
+                      "description": "Caption for the image.",
+                      "markdownDescription": "Caption for the image."
+                    },
+                    "layout": {
+                      "type": "string",
+                      "enum": [
+                        "vertical",
+                        "horizontal"
+                      ],
+                      "description": "How to position the image.",
+                      "markdownDescription": "How to position the image."
+                    },
+                    "resize": {
+                      "type": "string",
+                      "enum": [
+                        "cover",
+                        "contain"
+                      ],
+                      "description": "How to resize the image.",
+                      "markdownDescription": "How to resize the image."
+                    }
+                  },
+                  "required": [
+                    "image"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "description": "Hero image.",
+              "markdownDescription": "Hero image."
+            }
+          }
+        },
+        {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "collection": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "collection"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "slug": {
+                          "type": "string"
+                        },
+                        "collection": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "slug",
+                        "collection"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ],
+                  "description": "Primary category of the article.",
+                  "markdownDescription": "Primary category of the article."
+                }
+              },
+              "required": [
+                "category"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "collection": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "collection"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "slug": {
+                            "type": "string"
+                          },
+                          "collection": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "slug",
+                          "collection"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "minItems": 1,
+                  "description": "Categories for the article. The first category is considered the primary one.",
+                  "markdownDescription": "Categories for the article. The first category is considered the primary one."
+                }
+              },
+              "required": [
+                "categories"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "canonical": {
+              "type": "string",
+              "description": "Canonical URL of the article, if published somewhere else first.",
+              "markdownDescription": "Canonical URL of the article, if published somewhere else first."
+            },
+            "published": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "integer",
+                  "format": "unix-time"
+                }
+              ],
+              "description": "Published date of the article. Can be omitted for drafts.",
+              "markdownDescription": "Published date of the article. Can be omitted for drafts."
+            },
+            "updated": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "integer",
+                  "format": "unix-time"
+                }
+              ],
+              "description": "Last updated date of the article. Defaults to the published date.",
+              "markdownDescription": "Last updated date of the article. Defaults to the published date."
+            },
+            "featured": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether the article should be featured.",
+              "markdownDescription": "Whether the article should be featured."
+            },
+            "listed": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether the article should appear in listings.",
+              "markdownDescription": "Whether the article should appear in listings."
+            },
+            "related": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "collection": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "collection"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "slug": {
+                        "type": "string"
+                      },
+                      "collection": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "slug",
+                      "collection"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "default": [],
+              "description": "Related articles that may be useful to link from this one.",
+              "markdownDescription": "Related articles that may be useful to link from this one."
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [],
+              "description": "Tags for the article.",
+              "markdownDescription": "Tags for the article."
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

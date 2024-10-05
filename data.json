@@ -1,0 +1,16 @@
+{
+	"$schema": "./schema.json",
+	"published": "2024-09-23T15:22:00.000Z",
+	"updated": "2024-09-23T15:22:00.000Z",
+	"title": "x",
+	"subheading": "x",
+	"category": "x",
+	"hero": {
+		"image": "x",
+		"caption": "x"
+	},
+	"tags": [
+		"x"
+	],
+	"description": "x"
+}
