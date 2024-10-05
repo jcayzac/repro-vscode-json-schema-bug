@@ -1,0 +1,1 @@
+# repro-vscode-json-schema-bug
