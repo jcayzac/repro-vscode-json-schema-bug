@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Auto-open data file.",
+            "type": "shell",
+            "command": "code data.json",
+            "runOptions": {
+                "runOn": "folderOpen",
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+            }
+        }
+    ]
+}

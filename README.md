@@ -8,7 +8,6 @@ This is a minimal repro for https://github.com/microsoft/vscode-json-languageser
 
 ```sh
 $ npm install
-$ node index.js
 Validation results: [
   '[line 1] Property $schema is not allowed.',
   '[line 2] Property published is not allowed.',
@@ -19,5 +18,4 @@ Validation results: [
   '[line 11] Property tags is not allowed.',
   '[line 14] Property description is not allowed.'
 ]
-done
 ```
